@@ -21,21 +21,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "bryce-nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Denver";
+  networking.hostName = "bryce-nixos"; # Define your hostname.
+  networking.firewall.enable = false;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+  time.timeZone = "America/Denver";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -53,21 +46,36 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  # Enable the X11 windowing system.
-# services.xserver.enable = true;
-
-  # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
-
-  # Configure keymap in X11
+  # DE Configs
   services.xserver = {
+    enable = false;
     xkb.layout = "us";
     xkb.variant = "";
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  xdg.portal = {
+  	enable = true;
+  	wlr.enable = true;
+#  	extraPortals = [
+#  		pkgs.xdg-desktop-portal-gtk
+#  	];
+  };
+
+  # Display Manager
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.sddm.enable = false;
+
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "bryce";
+
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -88,10 +96,6 @@
     ];
   };
 
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "bryce";
-
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -104,56 +108,12 @@
 	meslo-lgs-nf
   ];
 
-  # Flatpak
-#  services.flatpak.enable = true;
-  xdg.portal = {
-  	enable = true;
-  	wlr.enable = true;
-#  	extraPortals = [
-#  		pkgs.xdg-desktop-portal-gtk
-#  	];
-  };
-
   # System packages
   environment.systemPackages = with pkgs; [
-	# DevOps
-	## Build Tools
-	clang
-	gcc
-	maven
-	ninja
-
-	## Environment
-	git
-#	(jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "nixidea" "github-copilot" ]) #codeium-ai 20540
-	jetbrains.idea-ultimate
-	jetbrains.rider
-	jetbrains.jdk
-	zed-editor
-
-	# Terminal
-	atuin		# Shell history
-	bat		# Better cat
-	cmatrix
-#	cowsay
-	curl
-	eza		# Better ls
-	fastfetch
-	figlet		# ASCII word art
-	fortune
-	fzf
-	gnugrep
-	lf		# Better ls
-#	lolcat
-	ripgrep
-	thefuck
-	tldr
-	unzip
-	warp-terminal
-#	wezterm
-	wget
-
-	# Hyprland
+    vim
+    kitty
+	#Hyprland
+	mesa
 	hyprland
 	xwayland
 	xdg-desktop-portal-gtk
@@ -168,21 +128,6 @@
 	swww		# Wall
 	waybar		# Bar
 	rofi-wayland	# App launcher
-
-	# Other
-	vesktop     # discord client
-	flameshot	# Screenshots
-	lxmenu-data	# Folder data
-	shared-mime-info
-	nomacs		#Image viewer
-	obsidian
-#	pavucontrol	# Audio controler
-        steam
-	syncthing	# Device file sync
-	vlc		# Video player
-	wireshark
-	volctl
-	yt-dlp
   ];
 
   nixpkgs.overlays = [
@@ -194,29 +139,11 @@
 	)
   ];
 
-  programs.neovim.enable = true;
-
-#  programs.nixvim = {
- # 	enable = true;
-#	"~/.config/nvim/option" = <value>;
-  #};
- # programs.java.enable = true;
-
-  # Tmux configs
-  programs.tmux.enable = true;
-  programs.tmux.plugins = [ pkgs.tmuxPlugins.sensible ];
-
   # List services that you want to enable:
-	virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  services.openssh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

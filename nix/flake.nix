@@ -8,16 +8,54 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:pta2002/nixvim";
     nsearch = {
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {self, nixpkgs, home-manager }:
+  outputs = {self, nixpkgs, home-manager, nixvim, ... }:
     let
       systemPackages = pkgs: with pkgs; [
-	firefox
+	clang
+	gcc
+	geany
+	git
+	ninja
+
+	# Terminal
+	atuin
+	bat
+	cmatrix
+	curl
+	eza
+	fastfetch
+	figlet
+	fortune
+	fzf
+	gnugrep
+	lf
+	ripgrep
+	thefuck
+	tldr
+	unzip
+	wget
+	
+	# Other
+	flameshot
+	lxmenu-data	  # Folder data
+	shared-mime-info
+	nomacs		  # Image viewer
+	obsidian
+      #	pavucontrol
+	qalculate-gtk
+	steam
+	syncthing
+	vesktop
+	vlc
+	volctl
+	yt-dlp
       ];
   {
     # Define the NixOS system configuration
@@ -64,6 +102,7 @@
 	    ];
 
 	    home.sessionVariables.WALLPAPER = "~/Pictures/Wallpapers/5552983.png";
+	    
 	  };
 	}
       ];

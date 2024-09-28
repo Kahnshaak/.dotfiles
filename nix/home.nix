@@ -9,20 +9,18 @@
 
   home.stateVersion = "24.11";
 
-  # Neovim
-  programs.neovim = {
-    enable = true;
-    package = pkgs.neovim;
-    extraConfig = ''
-      set number
-      set relativenumber
-    '';
-  };
+# # Neovim
+# programs.neovim = {
+#   enable = true;
+#   package = pkgs.neovim;
+#   extraConfig = ''
+#     set number
+#     set relativenumber
+#   '';
+# };
 
   # Packages
   home.packages = with pkgs; [
-    neovim
-    zsh
   ];
 
   # Environment variables
@@ -45,6 +43,20 @@
     initExtra = ''
     export EDITOR=nvim
   '';
+  };
+
+  # Nixvim, the neovim package with nix declarativity
+  programs.nixvim = {
+    enable = true;
+    "~/.config/nvim/option" = ;
+  };
+
+  # Tmux
+  programs.tmux = {
+    enable == true;
+    plugins = with pkgs; {
+      tmuxPlugins.sensible
+    };
   };
 
   # Dotfiles declaration
