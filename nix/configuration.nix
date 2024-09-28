@@ -1,14 +1,13 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# System-Specific Configuration
+## System configs for like networking, services, hardware etc
+## Other configs should be in the flake (like packages and package configs)
 
 { config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
-#      <nixvim_import>
     ];
   
   nix = {
@@ -50,51 +49,12 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Terminal options
-#  programs.wezterm = {
-#	enable = true;
-#	colorSchemes = "Atlas (base16)";
-#	enableZshIntegration = true;
-#	extraConfig = {
-#		font = "JetBrains Mono";
-#		window_background_image = "$HOME/Pictures/Wallpapers/leapOfFaith.jpg";
-#		window_background_opacity = 0.2;
-#	};
-#  };
-
-#  programs.zoxide = {
-#	enable = true;
-#	enableZshIntegration = true;
-#  };
-
-  programs.zsh = {
-	enable = true;
-	enableCompletion = true;
-	autosuggestions.enable = true;
-	syntaxHighlighting.enable = true;
-
-	shellAliases = {
-		ll = "ls -l";
-		shn = "shutdown now";
-	};
-
-#	history.size = 10000;
-#	history.ignoreAllDups = true;
-  };
-
-  # Enable Hyprland
-  programs.hyprland = {
-    enable = true;
-#    xwayland.hidpi = true;
-    xwayland.enable = true;
-  };
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+# services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
@@ -186,6 +146,7 @@
 	lf		# Better ls
 #	lolcat
 	ripgrep
+	thefuck
 	tldr
 	unzip
 	warp-terminal
