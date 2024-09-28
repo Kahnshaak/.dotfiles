@@ -49,6 +49,6 @@
 
   # Dotfiles declaration
   home.file.".wezterm.lua".source = ~/.dotfiles/.wezterm.lua;
-  home.file."zshrc".source = ~/.dotfiles/zshrc;
+  home.file.".zshrc".source = ~/.dotfiles/.zshrc;
   home.file.".config/hypr/hyprland.conf".source = ~/.dotfiles/hyprland.conf;
 }

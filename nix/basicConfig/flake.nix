@@ -1,5 +1,5 @@
 # The purpose of this file is having a basic flake that builds home-manager
-# for reference of someone who wants to try flakes with homem-manager but
+# for reference of someone who wants to try flakes with home-manager but
 # they found the docs as confusing as I did
 
 {
