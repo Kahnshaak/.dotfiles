@@ -12,10 +12,10 @@
     nsearch = {
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
+    }; # CLI package search
   };
 
-  outputs = {self, nixpkgs, home-manager, nixvim, ... }:
+  outputs = {self, nixpkgs, home-manager, nixvim, nsearch, ... }:
     let
       systemPackages = pkgs: with pkgs; [
 	clang
@@ -41,14 +41,15 @@
 	tldr
 	unzip
 	wget
-	
+
 	# Other
+	brave
 	flameshot
 	lxmenu-data	  # Folder data
 	shared-mime-info
 	nomacs		  # Image viewer
 	obsidian
-      #	pavucontrol
+#	pavucontrol
 	qalculate-gtk
 	steam
 	syncthing
@@ -68,7 +69,12 @@
 	  home-manager.useUserPackages = true;
 	  home-manager.users.bryce = {
 	    import ./home.nix;
-	    
+
+	    programs.freetube.enable = true;
+	    programs.qutebrowser = {
+	      enable = true;
+	    };
+
 	    # Hyprland
 	    programs.hyprland = {
 	      enable = true;
@@ -76,8 +82,6 @@
 	      xwayland.hidpi = true;
 	    };
 
-	    programs.sway.enable = true;
-	    
 	    # Wezterm
 	    programs.wezterm = {
 	      enable = true;
@@ -94,15 +98,6 @@
 	      enable = true;
 	      enableZshIntegration = true;
 	    };
-
-	    home.packages = with pkgs; [
-	      rofi
-	      feh
-	      wezterm
-	    ];
-
-	    home.sessionVariables.WALLPAPER = "~/Pictures/Wallpapers/5552983.png";
-	    
 	  };
 	}
       ];

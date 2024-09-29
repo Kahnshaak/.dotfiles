@@ -9,21 +9,21 @@
 
   home.stateVersion = "24.11";
 
-# # Neovim
-# programs.neovim = {
-#   enable = true;
-#   package = pkgs.neovim;
-#   extraConfig = ''
-#     set number
-#     set relativenumber
-#   '';
-# };
+  home.sessionVariables.WALLPAPER = "~/Pictures/Wallpapers/5552983.png";
 
   # Packages
   home.packages = with pkgs; [
+    rofi
+    feh
+    
   ];
 
   # Environment variables
+  fonts.packages = with pkgs; {
+    nerdfonts
+    meslo-lgs-nf
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -45,10 +45,28 @@
   '';
   };
 
-  # Nixvim, the neovim package with nix declarativity
   programs.nixvim = {
     enable = true;
-    "~/.config/nvim/option" = ;
+#   "~/.config/nvim/option" = ;
+    plugins = {
+      start = {
+        telescope = {
+          plugin = { repo = "nvim-telescope/telescope.nvim"; };
+        };
+        treesitter = {
+          plugin = { repo = "nvim -treesitter/nvim-treesitter"; };
+        };
+      };
+    };
+
+    # Settings for init.vim or init.lua
+    settings = {
+      vim.o.number = true;
+      vim.o.relativenumber = true;
+      vim.o.tabstop = 2;
+      vim.o.shiftwidth = 4;
+      vim.o.expandtab = true;
+    };
   };
 
   # Tmux
