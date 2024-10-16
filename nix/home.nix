@@ -13,6 +13,7 @@
 
   # Packages
   home.packages = with pkgs; [
+    # WM utils
     rofi
     feh
     
@@ -43,30 +44,6 @@
     initExtra = ''
     export EDITOR=nvim
   '';
-  };
-
-  programs.nixvim = {
-    enable = true;
-#   "~/.config/nvim/option" = ;
-    plugins = {
-      start = {
-        telescope = {
-          plugin = { repo = "nvim-telescope/telescope.nvim"; };
-        };
-        treesitter = {
-          plugin = { repo = "nvim -treesitter/nvim-treesitter"; };
-        };
-      };
-    };
-
-    # Settings for init.vim or init.lua
-    settings = {
-      vim.o.number = true;
-      vim.o.relativenumber = true;
-      vim.o.tabstop = 2;
-      vim.o.shiftwidth = 4;
-      vim.o.expandtab = true;
-    };
   };
 
   # Tmux

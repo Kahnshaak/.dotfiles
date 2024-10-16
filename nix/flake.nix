@@ -8,11 +8,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim.url = "github:pta2002/nixvim";
-    nsearch = {
+
+    # Add in custom flakes I have declared in my directory
+    nixvim-flake.url = "path:./flakes/nixvim";
+    dev-flake.url = "path:./flakes/development";
+    nsearch-flake = {				  # CLI package search
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; # CLI package search
+    }; 
   };
 
   outputs = {self, nixpkgs, home-manager, nixvim, nsearch, ... }:
@@ -35,12 +38,12 @@
 	fortune
 	fzf
 	gnugrep
-	lf
 	ripgrep
 	thefuck
 	tldr
 	unzip
 	wget
+	yazi
 
 	# Other
 	brave
@@ -50,6 +53,7 @@
 	nomacs		  # Image viewer
 	obsidian
 #	pavucontrol
+	pandoc		  # File converter
 	qalculate-gtk
 	steam
 	syncthing
@@ -57,6 +61,7 @@
 	vlc
 	volctl
 	yt-dlp
+
       ];
   {
     # Define the NixOS system configuration
