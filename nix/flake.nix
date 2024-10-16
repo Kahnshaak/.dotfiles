@@ -43,7 +43,6 @@
 	tldr
 	unzip
 	wget
-	yazi
 
 	# Other
 	brave

@@ -25,6 +25,7 @@
     meslo-lgs-nf
   };
 
+  # Zsh
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -44,6 +45,25 @@
     initExtra = ''
     export EDITOR=nvim
   '';
+  };
+
+  # Yazi
+  programs.yazi = {
+    enable = true;
+    settings = {
+      manager = {
+        sort_dir_first = true;
+        show_hidden = true;
+      };
+      preview = {
+        max_width = 600;
+        max_height = 900;
+        image_quality = 90;
+      };
+      theme = {};
+      yazi = {};
+      keymap = {};
+    };
   };
 
   # Tmux

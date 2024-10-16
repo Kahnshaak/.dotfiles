@@ -8,5 +8,8 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
-	outputs
+	outputs = { nixpkgs, nsearch, ... }:
+	{
+		
+
 }
