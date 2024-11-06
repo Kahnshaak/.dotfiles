@@ -4,7 +4,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    python-flake.url = "path:./flakes/python"; # Make sure it is direct path and not relative
+    python-flake.url = "path:./nix/flakes/python"; # Make sure it is direct path and not relative
 #   java-flake.url = "path:../java";
 #   dotnet-flake.url = "path:../dotnet";
 #   c-flake.url = "path:../c";
