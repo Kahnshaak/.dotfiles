@@ -59,6 +59,7 @@
 	yt-dlp
 
       ];
+    in
   {
     # Define the NixOS system configuration
     nixosConfigurations.bryce-nixos = nixpkgs.lib.nixosSystem {
@@ -68,8 +69,7 @@
 	home-manager.nixosModules.home-manager {
 	  home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
-	  home-manager.users.bryce = {
-	    import ./home.nix;
+	  home-manager.users.bryce = import ./home.nix;
 
 	    programs.freetube.enable = true;
 	    programs.qutebrowser = {
@@ -99,8 +99,7 @@
 	      enable = true;
 	      enableZshIntegration = true;
 	    };
-	  };
-	}
+	  }
       ];
     };
   };
