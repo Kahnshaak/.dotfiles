@@ -9,13 +9,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Add in custom flakes I have declared in my directory
+    # Add in custom flakes I have declared in my hierarchy
     nixvim-flake.url = "path:./flakes/nixvim";
     dev-flake.url = "path:./flakes/development";
-    nsearch-flake = {				  # CLI package search
-      url = "github:niksingh710/nsearch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    nsearch-flake.url = "path:./flakes/nsearch";	  # CLI package search
   };
 
   outputs = {self, nixpkgs, home-manager, nixvim, nsearch, ... }:
