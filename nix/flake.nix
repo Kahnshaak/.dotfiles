@@ -6,8 +6,11 @@
   # Inputs: Declaring external dependencies like nixpkgs and home-manager
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Add in custom flakes I have declared in my hierarchy
     nixvim-flake.url = "path:./flakes/nixvim";
@@ -59,11 +62,14 @@
 	yt-dlp
 
       ];
+
+      system = "x86-linux";
+      
     in
   {
     # Define the NixOS system configuration
     nixosConfigurations.bryce-nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      system = ${ system };
       modules = [
 	./configuration.nix
 	home-manager.nixosModules.home-manager {

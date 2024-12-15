@@ -151,6 +151,10 @@
   # List services that you want to enable:
   virtualisation.docker.enable = true;
 
+  programs.steam = {
+    enable = true;
+  }
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.twingate = {

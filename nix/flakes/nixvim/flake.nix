@@ -3,7 +3,9 @@
 {
 	description = "Flake for my nixvim config, a distro of neovim using nixs declarativity";
 	inputs = {
-		nixvim.url = "github:pta2002/nixvim";
+		nixvim = {
+			url = "github:pta2002/nixvim";
+			inpute.nixpkgs.follows = "nixpkgs";
 	};
 
 	outputs = {self, nixpkgs, nixvim, ... }:
