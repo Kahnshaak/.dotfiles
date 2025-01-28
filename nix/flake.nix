@@ -11,7 +11,7 @@
 			system = "x86_64-linux";
 			pkgs = import nixpkgs { system = system; };
 		in {
-			nixosConfigurations.laptop = pkgs.lib.nixosSystem {
+			nixosConfiguration.laptop = pkgs.lib.nixosSystem {
 				system = system;
 				modules = [
 					./configuration.nix
