@@ -1,4 +1,4 @@
-{ config, pkgs, hyprland, ... }:
+{ config, pkgs, ... }:
 
 {
 	programs.zsh = {
@@ -11,6 +11,8 @@
 	};
 
 	wayland.windowManager.hyprland = {
+		enable = true;
+		home.sessionVariables.NIXOS_OZONE_WL = "1";
 		settings = {
 			"$mod" = "SUPER";
 			bind = [

@@ -47,8 +47,8 @@
 		user = "bryce";
 	};
 
-	environment.variables = {
-		XDG_SESSION_DESKTOP = "hyperland";
-		WLR_NO_HARDWARE_CURSORS = "1";
-	};
+	programs.hyprland.enable = true;
+	programs.zsh.enable = true;
+
+	#	environment.variables = {		XDG_SESSION_DESKTOP = "hyperland";		WLR_NO_HARDWARE_CURSORS = "1";	};
 }
