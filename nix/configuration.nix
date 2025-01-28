@@ -23,9 +23,10 @@
 
 	#	wayland = {		enable = true;		displayManager = {			gdm.enable = false;		};		windowManager.enable = true;		windowManager.hyperland.enable = true;	};
 
+	boot.loader.systemd-boot.enable = true;
+	boot.loader.efi.canTouchEfiVariables = true;
 	hardware.opengl = {
 		enable = true;
-		driSupport = true;
 		extraPackages = with pkgs; [
 			vulkan-loader
 			vulkan-tools
@@ -51,4 +52,6 @@
 	programs.zsh.enable = true;
 
 	#	environment.variables = {		XDG_SESSION_DESKTOP = "hyperland";		WLR_NO_HARDWARE_CURSORS = "1";	};
+
+	system.stateVersion = "unstable";
 }
