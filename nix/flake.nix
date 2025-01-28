@@ -9,10 +9,10 @@
 	outputs = { self, nixpkgs, home-manager, ... }:
 		let
 			system = "x86_64-linux";
-			pkgs = import nixpkgs { system = system; };
+			#pkgs = import nixpkgs { system = system; };
 		in {
-			nixosConfigurations.laptop = pkgs.lib.nixosSystem {
-				system = ${ system };
+			nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+				system = system;
 				modules = [
 					./configuration.nix
 					home-manager.nixosModules.home-manager
