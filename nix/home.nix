@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-	home.username = "bryce";
+	#	home.username = "bryce";
 	home.stateVersion = "24.11";
 
 	home.sessionVariables.WALLPAPER = "~Pictures/Wallpapers/5552983.png";

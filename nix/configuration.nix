@@ -7,7 +7,7 @@
 	];
 
 	nix = {
-		package = pkgs.nixVersions.unstable;
+		package = pkgs.nixVersions.git;
 		extraOptions = ''
 			experimental-features = nix-command flakes
 		'';
@@ -19,17 +19,7 @@
 		firewall.enable = false;
 	};
 
-	users.users.bryce = {
-		isNormalUser = true;
-		home = "/home/bryce";
-		description = "The Dude";
-		extraGroups = [ "wheel" "docker" "video" "networkmanager"];
-		shell = pkgs.zsh;
-	};
-	home-manager.users.bryce = { pkgs, ... }: {
-		home.packages = [ pkgs.atool pkgs.httpie ];
-		programs.zsh.enable = true;
-	};
+	#	users.users.bryce = {		isNormalUser = true;		home = "/home/bryce";		description = "The Dude";		extraGroups = [ "wheel" "docker" "video" "networkmanager"];		shell = pkgs.zsh;	};
 
 	nixpkgs.config.allowUnfree = true;
 
