@@ -1,81 +1,50 @@
-# User configs
-## Setting up user preferences and dotfiles for the system
-
 { config, pkgs, ... }:
 
 {
-  home.username = "bryce";
-  home.homeDirectory = "/home/bryce";
+	programs.zsh = {
+		enable = true;
+		ohMyZsh = {
+			enable = true;
+			plugins = [ "git" "zoxide" ];
+			theme = "agnoster";
+		};
+	};
 
-  home.stateVersion = "24.11";
+	programs.wezterm = {
+		enable = true;
+		settings = {
+			font_size = 12.0;
+			color_scheme = "Gruvbox Dark";
+		};
+	};
 
-  home.sessionVariables.WALLPAPER = "~/Pictures/Wallpapers/5552983.png";
+	programs.ghostty.enable = true;
 
-  # Packages
-  home.packages = with pkgs; [
-    # WM utils
-    rofi
-    feh
-    
-  ];
+	programs.neovim = {
+		enable = true;
+		package = with pkgs.vimPlugins; [
+			vim-nix
+			vim-fugitive
+		];
+	};
 
-  # Environment variables
-  fonts.packages = with pkgs; {
-    nerdfonts
-    meslo-lgs-nf
-  };
+	programs.tmux = {
+		enable = true;
+		extraConfig = ''
+			set -g mouse on
+			bind r source-file ~/.tmux.conf \; display "Config Reloaded"
+		'';
+	};
 
-  # Zsh
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    ohMyZsh.enable = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enabe = true;
+	home.packages = with pkgs; [
+		zoxide
+		tmux
+	#ghostty
+	];
 
-    shellAliases = {
-      ll = "ls -l";
-      la = "ls -la";
-      shn = "shutdown now";
-    };
-
-    history.size = 10000;
-    history.ignoreAllDups = true;
-
-    initExtra = ''
-    export EDITOR=nvim
-  '';
-  };
-
-  # Yazi
-  programs.yazi = {
-    enable = true;
-    settings = {
-      manager = {
-        sort_dir_first = true;
-        show_hidden = true;
-      };
-      preview = {
-        max_width = 600;
-        max_height = 900;
-        image_quality = 90;
-      };
-      theme = {};
-      yazi = {};
-      keymap = {};
-    };
-  };
-
-  # Tmux
-  programs.tmux = {
-    enable == true;
-    plugins = with pkgs; {
-      tmuxPlugins.sensible
-    };
-  };
-
-  # Dotfiles declaration
-  home.file.".wezterm.lua".source = ~/.dotfiles/.wezterm.lua;
-  home.file.".zshrc".source = ~/.dotfiles/.zshrc;
-  home.file.".config/hypr/hyprland.conf".source = ~/.dotfiles/hyprland.conf;
+	programs.stylix = {
+		enable = true;
+		theme = "nord";
+		additionalThemes = [ "gruvbox" ];
+	};
 }
