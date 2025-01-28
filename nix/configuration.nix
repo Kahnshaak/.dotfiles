@@ -1,18 +1,34 @@
 { config, pkgs, ... }:
 
 {
-	imports = [ ./hardware-configuration.nix ];
+	imports = [ 
+		./hardware-configuration.nix
+	];
+
+	nix = {
+		package = pkgs.nixFlakes;
+		extraOptions = ''
+			experimental-features = nix-command flakes
+		'';
+	};
+
+	networking = {
+		networkmanager.enable = true;
+		hostName = "bryce-nixos";
+		networking.firewall.enable = false;
+	};
 
 	users.users.bryce = {
 		isNormalUser = true;
 		home = "/home/bryce";
 		description = "Bryce";
-		extraGroups = [ "wheel" "docker" "video"];
+		extraGroups = [ "wheel" "docker" "video" "networkmanager"];
 		shell = pkgs.zsh;
 	};
 
+	nixpkgs.config.allowUnfree = true;
+
 	environment.systemPackages = with pkgs; [
-		steam
 		vesktop
 
 		# Podman tools to replace docker
@@ -25,7 +41,7 @@
 
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
-	hardware.opengl = {
+	hardware.graphics = {
 		enable = true;
 		extraPackages = with pkgs; [
 			vulkan-loader
@@ -50,6 +66,7 @@
 
 	programs.hyprland.enable = true;
 	programs.zsh.enable = true;
+	programs.steam.enable = true;
 
 	#	environment.variables = {		XDG_SESSION_DESKTOP = "hyperland";		WLR_NO_HARDWARE_CURSORS = "1";	};
 
