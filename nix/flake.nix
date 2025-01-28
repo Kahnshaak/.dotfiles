@@ -6,13 +6,13 @@
 		home-manager.url = "github:nix-community/home-manager";
 	};
 
-	outputs = { self, nixpkgs, home-manager }:
+	outputs = { self, nixpkgs, home-manager, ... }:
 		let
 			system = "x86_64-linux";
 			pkgs = import nixpkgs { system = system; };
 		in {
-			nixosConfiguration.laptop = pkgs.lib.nixosSystem {
-				system = system;
+			nixosConfigurations.laptop = pkgs.lib.nixosSystem {
+				system = ${ system };
 				modules = [
 					./configuration.nix
 					home-manager.nixosModules.home-manager
