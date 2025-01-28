@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hyprland, ... }:
 
 {
 	programs.zsh = {
@@ -8,6 +8,16 @@
 			plugins = [ "git" "zoxide" ];
 			theme = "agnoster";
 		};
+	};
+
+	wayland.windowManager.hyprland = {
+		settings = {
+			"$mod" = "SUPER";
+			bind = [
+				"$mod, F, exec, firefox"
+			];
+		};
+		plugins = [  ];
 	};
 
 	programs.wezterm = {

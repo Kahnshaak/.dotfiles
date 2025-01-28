@@ -14,17 +14,14 @@
 	environment.systemPackages = with pkgs; [
 		steam
 		vesktop
-		docker-compose
+
+		# Podman tools to replace docker
+		dive
+		podman-tui
+		podman-compose
 	];
 
-	services.xserver = {
-		enable = true
-		displayManager = {
-			gdm.enable = false;
-		};
-		windowManager.enable = true;
-		windowManager.hyperland.enable = true;
-	};
+	#	wayland = {		enable = true;		displayManager = {			gdm.enable = false;		};		windowManager.enable = true;		windowManager.hyperland.enable = true;	};
 
 	hardware.opengl = {
 		enable = true;
@@ -35,11 +32,15 @@
 		];
 	};
 
-	services.docker = {
-		enable = true;
-		group = "docker";
+	#	services.docker = {		enable = true;		group = "docker";	};
+	virtualisation = {
+		containers.enable = true;
+		podman = {
+			enable = true;
+			dockerCompat = true; # Makes a docker group
+			defaultNetwork.settings.dns_enabled = true;
+		};
 	};
-	users.users.bryce.extraGroups = [ "docker" ];
 
 	services.syncthing = {
 		enable = true;
