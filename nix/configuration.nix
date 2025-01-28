@@ -6,7 +6,7 @@
 	];
 
 	nix = {
-		package = pkgs.nixFlakes;
+		package = pkgs.nixVersions.stable;
 		extraOptions = ''
 			experimental-features = nix-command flakes
 		'';
@@ -15,7 +15,7 @@
 	networking = {
 		networkmanager.enable = true;
 		hostName = "bryce-nixos";
-		networking.firewall.enable = false;
+		firewall.enable = false;
 	};
 
 	users.users.bryce = {
@@ -29,7 +29,18 @@
 	nixpkgs.config.allowUnfree = true;
 
 	environment.systemPackages = with pkgs; [
+		vim
+		kitty
 		vesktop
+
+		# Wayland
+		hyprland
+		waybar
+		xdg-desktop-portal-hyprland
+		xdg-desktop-portal
+		wl-clipboard
+		grim
+		slurp
 
 		# Podman tools to replace docker
 		dive
@@ -62,6 +73,15 @@
 	services.syncthing = {
 		enable = true;
 		user = "bryce";
+	};
+
+	services.displayManager = {
+		sddm = {
+			enable = true;
+			wayland.enable = true;
+		};
+
+		defaultSession = "hyprland";
 	};
 
 	programs.hyprland.enable = true;

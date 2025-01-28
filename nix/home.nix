@@ -13,6 +13,7 @@
 	wayland.windowManager.hyprland = {
 		enable = true;
 		home.sessionVariables.NIXOS_OZONE_WL = "1";
+		package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 		settings = {
 			"$mod" = "SUPER";
 			bind = [

@@ -9,10 +9,10 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		hyperland.url = "github:hyprwm/Hyprland";
+		hyprland.url = "github:hyprwm/Hyprland";
 	};
 
-	outputs = { self, nixpkgs, home-manager, hyperland, ... }@inputs:
+	outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
 		let
 			system = "x86_64-linux";
 			pkgs = import nixpkgs { inherit system; };
