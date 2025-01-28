@@ -3,10 +3,11 @@
 {
 	imports = [ 
 		./hardware-configuration.nix
+		<home-manager/nixos>
 	];
 
 	nix = {
-		package = pkgs.nixVersions.stable;
+		package = pkgs.nixVersions.unstable;
 		extraOptions = ''
 			experimental-features = nix-command flakes
 		'';
@@ -21,9 +22,13 @@
 	users.users.bryce = {
 		isNormalUser = true;
 		home = "/home/bryce";
-		description = "Bryce";
+		description = "The Dude";
 		extraGroups = [ "wheel" "docker" "video" "networkmanager"];
 		shell = pkgs.zsh;
+	};
+	home-manager.users.bryce = { pkgs, ... }: {
+		home.packages = [ pkgs.atool pkgs.httpie ];
+		programs.zsh.enable = true;
 	};
 
 	nixpkgs.config.allowUnfree = true;
@@ -34,7 +39,6 @@
 		vesktop
 
 		# Wayland
-		hyprland
 		waybar
 		xdg-desktop-portal-hyprland
 		xdg-desktop-portal
@@ -60,7 +64,6 @@
 		];
 	};
 
-	#	services.docker = {		enable = true;		group = "docker";	};
 	virtualisation = {
 		containers.enable = true;
 		podman = {
@@ -84,11 +87,11 @@
 		defaultSession = "hyprland";
 	};
 
+	#	programs.home-manager.enable = true;
 	programs.hyprland.enable = true;
 	programs.zsh.enable = true;
 	programs.steam.enable = true;
 
-	#	environment.variables = {		XDG_SESSION_DESKTOP = "hyperland";		WLR_NO_HARDWARE_CURSORS = "1";	};
 
 	system.stateVersion = "unstable";
 }
