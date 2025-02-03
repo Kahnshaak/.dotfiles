@@ -19,7 +19,13 @@
 		firewall.enable = false;
 	};
 
-	#	users.users.bryce = {		isNormalUser = true;		home = "/home/bryce";		description = "The Dude";		extraGroups = [ "wheel" "docker" "video" "networkmanager"];		shell = pkgs.zsh;	};
+	users.users.bryce = {		
+		isNormalUser = true;		
+		home = "/home/bryce";		
+		description = "The Dude";		
+		extraGroups = [ "wheel" "docker" "video" "networkmanager"];		
+		shell = pkgs.zsh;	
+	};
 
 	nixpkgs.config.allowUnfree = true;
 
@@ -35,6 +41,7 @@
 		wl-clipboard
 		grim
 		slurp
+		tofi
 
 		# Podman tools to replace docker
 		dive
@@ -42,7 +49,6 @@
 		podman-compose
 	];
 
-	#	wayland = {		enable = true;		displayManager = {			gdm.enable = false;		};		windowManager.enable = true;		windowManager.hyperland.enable = true;	};
 
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
