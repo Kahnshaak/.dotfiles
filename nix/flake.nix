@@ -24,7 +24,7 @@
 				modules = [
 					./configuration.nix
 					home-manager.nixosModules.home-manager
-					inputs.stulix.nixosModules.stylix
+					inputs.stylix.nixosModules.stylix
 				];
 				specialArgs = { inherit inputs; };
 			};
