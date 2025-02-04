@@ -52,3 +52,4 @@ export EDITOR=nvim
 
 
 
+alias rebuild="sudo nixos-rebuild switch --flake /home/bryce/.dotfiles/nix"
