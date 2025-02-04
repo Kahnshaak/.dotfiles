@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 	home.username = "bryce";
 	home.stateVersion = "24.11";
 
-	home.sessionVariables.WALLPAPER = "~Pictures/Wallpapers/5552983.png";
+	home.sessionVariables.NIXOS_OZONE_WL = "1";
+#	home.sessionVariables.WALLPAPER = "${config.home.homeDirectory}/Pictures/Wallpapers/5552983.png";
 	
 	programs.zsh = {
 		enable = true;
@@ -29,7 +30,6 @@
 
 	wayland.windowManager.hyprland = {
 		enable = true;
-		home.sessionVariables.NIXOS_OZONE_WL = "1";
 		package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 		settings = {
 			"$mod" = "SUPER";
@@ -52,7 +52,7 @@
 
 	programs.neovim = {
 		enable = true;
-		package = with pkgs.vimPlugins; [
+		plugins = with pkgs.vimPlugins; [
 			vim-nix
 			vim-fugitive
 		];
@@ -82,8 +82,8 @@
 	};
 
 	# Dotfiles declaration
-	home.file.".wezterm.lua".source = ~/.dotfiles/.wezterm.lua;
-	home.file.".zshrc".source = ~/.dotfiles/.zshrc;
-	home.file.".config/hypr/hyprland.conf".source = ~/.dotfiles/hyprland.conf;
+	home.file.".wezterm.lua".source = "${config.home.homeDirectory}/.dotfiles/.wezterm.lua";
+	home.file.".zshrc".source = "${config.home.homeDirectory}/.dotfiles/.zshrc";
+	home.file.".config/hypr/hyprland.conf".source = "${config.home.homeDirectory}/.dotfiles/hyprland.conf";
 
 }
