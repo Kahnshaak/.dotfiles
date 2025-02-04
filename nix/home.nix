@@ -60,9 +60,9 @@
 
 	programs.tmux = {
 		enable = true;
-		plugins = with pkgs; {
+		plugins = with pkgs; [
 			tmuxPlugins.sensible
-		};
+		];
 		extraConfig = ''
 			set -g mouse on
 			bind r source-file ~/.tmux.conf \; display "Config Reloaded"
