@@ -71,7 +71,7 @@
 
 	home.packages = with pkgs; [
 		zoxide
-		tmux
+		vesktop
 	#ghostty
 	];
 

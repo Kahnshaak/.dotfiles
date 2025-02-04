@@ -3,7 +3,7 @@
 {
 	imports = [ 
 		./hardware-configuration.nix
-		<home-manager/nixos>
+	#	<home-manager/nixos>
 	];
 
 	nix = {
@@ -19,6 +19,7 @@
 		firewall.enable = false;
 	};
 
+	programs.home-manager.enable = true;
 	users.users.bryce = {		
 		isNormalUser = true;		
 		home = "/home/bryce";		
@@ -32,7 +33,8 @@
 	environment.systemPackages = with pkgs; [
 		vim
 		kitty
-		vesktop
+		tmux
+		git
 
 		# Wayland
 		waybar
@@ -83,7 +85,6 @@
 		defaultSession = "hyprland";
 	};
 
-	#	programs.home-manager.enable = true;
 	programs.hyprland.enable = true;
 	programs.zsh.enable = true;
 	programs.steam.enable = true;

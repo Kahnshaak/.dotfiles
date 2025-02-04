@@ -17,9 +17,8 @@
 			system = "x86_64-linux";
 			pkgs = import nixpkgs { inherit system; };
 		in {
-			#	homeConfigurations."bryce@bryce-nixos" = home-manager.lib.homeManagerConfiguration {			modules = [					{						wayland.windowManager.hyprland = {							enable = true;							package = input.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;						};					}				];			};
 
-			nixosConfigurations.bryce-nixos = nixpkgs.lib.nixosSystem {
+			nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
 				inherit system;
 				modules = [
 					./configuration.nix
@@ -30,6 +29,7 @@
 			
 			homeConfigurations.bryce = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;
+				extraSpecialArgs = { inherit inputs; };
 				modules = [ 
 					./home.nix
 				 ];
