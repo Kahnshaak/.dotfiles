@@ -86,7 +86,7 @@
 	home.file = {
 		".wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/.dotfiles/.wezterm.lua";
 		".zshrc".source = config.lib.file.mkOutOfStoreSymlink "/home/.dotfiles/.zshrc";
-		".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/.dotfiles/hyprland.conf";
+#		".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/.dotfiles/hyprland.conf";
 #	home.file.".zshrc".source = "${config.home.homeDirectory}/.dotfiles/.zshrc";
 	};
 }
