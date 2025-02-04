@@ -3,6 +3,7 @@
 {
 	home.username = "bryce";
 	home.stateVersion = "24.11";
+	home.homeDirectory = "/home/bryce/";
 
 	home.sessionVariables.NIXOS_OZONE_WL = "1";
 #	home.sessionVariables.WALLPAPER = "${config.home.homeDirectory}/Pictures/Wallpapers/5552983.png";
@@ -10,7 +11,7 @@
 	programs.zsh = {
 		enable = true;
 		enableCompletion = true;
-		autosuggestions.enable = true;
+#		autosuggestions.enable = true;
 		syntaxHighlighting.enable = true;
 
 		shellAliases = {
@@ -21,11 +22,11 @@
 		history.size = 10000;
 		history.ignoreAllDups = true;
 
-		ohMyZsh = {
-			enable = true;
-			plugins = [ "git" "zoxide" ];
-			theme = "agnoster";
-		};
+#		ohMyZsh = {
+#			enable = true;
+#			plugins = [ "git" "zoxide" ];
+#			theme = "agnoster";
+#		};
 	};
 
 	wayland.windowManager.hyprland = {
@@ -42,10 +43,10 @@
 
 	programs.wezterm = {
 		enable = true;
-		settings = {
-			font_size = 12.0;
-			color_scheme = "Gruvbox Dark";
-		};
+#		settings = {
+#			font_size = 12.0;
+#			color_scheme = "Gruvbox Dark";
+#		};
 	};
 
 	programs.ghostty.enable = true;
@@ -75,15 +76,17 @@
 	#ghostty
 	];
 
-	programs.stylix = {
-		enable = true;
-		theme = "nord";
-		additionalThemes = [ "gruvbox" ];
-	};
+#	programs.stylix = {
+#		enable = true;
+#		theme = "nord";
+#		additionalThemes = [ "gruvbox" ];
+#	};
 
 	# Dotfiles declaration
-	home.file.".wezterm.lua".source = "${config.home.homeDirectory}/.dotfiles/.wezterm.lua";
-	home.file.".zshrc".source = "${config.home.homeDirectory}/.dotfiles/.zshrc";
-	home.file.".config/hypr/hyprland.conf".source = "${config.home.homeDirectory}/.dotfiles/hyprland.conf";
-
+	home.file = {
+		".wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/.dotfiles/.wezterm.lua";
+		".zshrc".source = config.lib.file.mkOutOfStoreSymlink "/home/.dotfiles/.zshrc";
+		".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/.dotfiles/hyprland.conf";
+#	home.file.".zshrc".source = "${config.home.homeDirectory}/.dotfiles/.zshrc";
+	};
 }
